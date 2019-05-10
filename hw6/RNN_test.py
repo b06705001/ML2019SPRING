@@ -17,7 +17,7 @@ import jieba
 
 #coding=utf-8
 count=0
-jieba.set_dictionary('dict.txt.big')
+jieba.set_dictionary('sys argv[2]')
 data=[]
 with open(sys.argv[1], newline='',encoding="utf-8-sig") as csvFile:
 #with open('/Users/peter yang/Downloads/train.csv', newline='') as csvFile:
@@ -71,7 +71,7 @@ y = []
 count=0;
 
 
-with open(sys.argv[2], newline='') as csvFile:
+with open(sys.argv[3], newline='') as csvFile:
 #with open('/Users/peter yang/Downloads/train.csv', newline='') as csvFile:
 	rows = csv.reader(csvFile, delimiter=',')
 	for row in rows:

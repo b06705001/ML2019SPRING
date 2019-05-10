@@ -10,6 +10,8 @@ from keras.optimizers import SGD,Adam
 from keras.utils import np_utils
 from keras.datasets import mnist
 
+
+
 typecount=7
 label=[]
 data=[]

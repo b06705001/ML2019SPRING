@@ -17,7 +17,7 @@ import jieba
 
 #coding=utf-8
 count=0
-jieba.set_dictionary('sys argv[2]')
+jieba.set_dictionary(sys.argv[2])
 data=[]
 with open(sys.argv[1], newline='',encoding="utf-8-sig") as csvFile:
 #with open('/Users/peter yang/Downloads/train.csv', newline='') as csvFile:
@@ -30,7 +30,6 @@ with open(sys.argv[1], newline='',encoding="utf-8-sig") as csvFile:
 		#data.append(emoji.demojize(row[1]))
 		count+=1
 newdata=[];
-print(data[0])
 for i in range(len(data)):
 	newdata.append([])
 	for ch in data[i]:
@@ -38,7 +37,6 @@ for i in range(len(data)):
 #w2v_model = word2vec.Word2Vec(newdata,size=1000,min_count=5)
 #data=data.values
 #data = pd.DataFrame(data)
-print(newdata[0])
 w2v_model=word2vec.Word2Vec.load('word.model')
 
 embedding_matrix = np.zeros((len(w2v_model.wv.vocab.items()) + 1, w2v_model.vector_size))
@@ -64,14 +62,12 @@ def text_to_index(corpus):
 PADDING_LENGTH = 300
 X = text_to_index(newdata)
 X = pad_sequences(X, maxlen=PADDING_LENGTH)
-print("Shape:", X.shape)
-print("Sample:", X[0])
 """
 y = []
 count=0;
 
 
-with open(sys.argv[3], newline='') as csvFile:
+with open(sys.argv[2], newline='') as csvFile:
 #with open('/Users/peter yang/Downloads/train.csv', newline='') as csvFile:
 	rows = csv.reader(csvFile, delimiter=',')
 	for row in rows:
@@ -86,9 +82,8 @@ HIDDEN_LAYER_SIZE = 64
 """
 model=keras.models.load_model('my_model.h5')
 pre=model.predict(X)
-print(pre)
 output=[]
-with open(sys.argv[2], 'w', newline='') as csvfile:
+with open(sys.argv[3], 'w', newline='') as csvfile:
 #   建立 CSV 檔寫入器
 	writer = csv.writer(csvfile)
 	writer.writerow(["id","label"])
